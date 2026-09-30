@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DevOps Demo</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <canvas id="confetti"></canvas>
+
+  <main class="card">
+    <!-- Animated DevOps infinity logo -->
+    <svg class="logo" viewBox="0 0 300 150" aria-label="DevOps logo">
+      <defs>
+        <linearGradient id="grad" x1="0" x2="1">
+          <stop offset="0%" stop-color="#38bdf8" />
+          <stop offset="50%" stop-color="#a78bfa" />
+          <stop offset="100%" stop-color="#f472b6" />
+        </linearGradient>
+      </defs>
+      <path class="loop-bg"
+        d="M150 75 C 120 25, 40 25, 40 75 C 40 125, 120 125, 150 75 C 180 25, 260 25, 260 75 C 260 125, 180 125, 150 75 Z" />
+      <path class="loop" id="loop"
+        d="M150 75 C 120 25, 40 25, 40 75 C 40 125, 120 125, 150 75 C 180 25, 260 25, 260 75 C 260 125, 180 125, 150 75 Z" />
+      <circle r="7" class="dot">
+        <animateMotion dur="4s" repeatCount="indefinite">
+          <mpath href="#loop" />
+        </animateMotion>
+      </circle>
+      <text x="90" y="80" class="label">DEV</text>
+      <text x="210" y="80" class="label">OPS</text>
+    </svg>
+
+    <div class="stages">
+      <span>Plan</span><span>Code</span><span>Build</span><span>Test</span>
+      <span>Release</span><span>Deploy</span><span>Operate</span><span>Monitor</span>
+    </div>
+
+    <h1><span class="emoji rocket">🚀</span> Deployment Successful! <span class="emoji check">✅</span></h1>
+    <p class="subtitle">Terraform ➜ Docker Hub ➜ GitHub Actions ➜ AWS EC2</p>
+
+    <div class="chill">
+      <span class="emoji float">😎</span>
+      <span class="emoji float d1">🍹</span>
+      <span class="emoji float d2">🌴</span>
+      <span class="emoji float d3">🎧</span>
+    </div>
+    <p class="chill-text">Pipeline is green. Time to chill.</p>
+
+    <footer>
+      <span>Version: <code id="version">__APP_VERSION__</code></span>
+      <span>Deployed: <code id="time">__BUILD_TIME__</code></span>
+    </footer>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
