@@ -77,3 +77,7 @@ docker run --rm -p 8080:80 webapp-demo
 ```bash
 cd terraform && terraform destroy
 ```
+
+## License
+
+MIT. See [LICENSE](LICENSE).
