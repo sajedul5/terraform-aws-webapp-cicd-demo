@@ -3,3 +3,4 @@ aws_profile   = "devops"
 key_name      = "devops-demo"
 instance_type = "t2.micro"
 app_port      = 8080
+docker_image  = "sajedul5/webapp-demo:latest"

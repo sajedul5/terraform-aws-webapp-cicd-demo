@@ -39,3 +39,9 @@ variable "allowed_cidr" {
   type        = string
   default     = "0.0.0.0/0"
 }
+
+variable "docker_image" {
+  description = "Docker image pulled and run on first boot"
+  type        = string
+  default     = "sajedul5/webapp-demo:latest"
+}

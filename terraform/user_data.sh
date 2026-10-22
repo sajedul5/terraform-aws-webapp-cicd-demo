@@ -17,3 +17,14 @@ apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin do
 
 systemctl enable --now docker
 usermod -aG docker ubuntu
+
+# Pull and run the web app image on first boot
+# (later deploys are handled by the CI/CD pipeline via scripts/deploy.sh)
+docker pull ${docker_image}
+
+docker rm -f webapp-demo || true
+docker run -d \
+  --name webapp-demo \
+  --restart unless-stopped \
+  -p ${app_port}:80 \
+  ${docker_image}

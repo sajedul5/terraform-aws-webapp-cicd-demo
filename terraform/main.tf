@@ -58,7 +58,10 @@ resource "aws_instance" "webapp" {
   key_name                    = var.key_name
   vpc_security_group_ids      = [aws_security_group.webapp.id]
   associate_public_ip_address = true
-  user_data                   = file("${path.module}/user_data.sh")
+  user_data = templatefile("${path.module}/user_data.sh", {
+    docker_image = var.docker_image
+    app_port     = var.app_port
+  })
 
   root_block_device {
     volume_size = 20
