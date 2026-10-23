@@ -1,6 +1,10 @@
 # terraform-aws-webapp-cicd-demo
 
-Fully automated web app deployment with Terraform, Docker Hub, AWS EC2, and GitHub Actions CI/CD.
+An end-to-end DevOps demo: Terraform provisions an AWS EC2 host, GitHub Actions builds the web app into a Docker image, pushes it to Docker Hub, and deploys it to EC2 over SSH on every push to `main`. No manual steps after the first setup.
+
+**Stack:** Terraform · AWS EC2 · Docker · Docker Hub · nginx · GitHub Actions
+
+**Author:** Md Sajedul Islam · [LinkedIn](https://www.linkedin.com/in/sajedul-islam-devops/)
 
 ```
 git push main ─► GitHub Actions ─► docker build ─► Docker Hub (sajedul5/webapp-demo)
@@ -77,3 +81,9 @@ docker run --rm -p 8080:80 webapp-demo
 ```bash
 cd terraform && terraform destroy
 ```
+
+## License
+
+Copyright © 2026 Md Sajedul Islam. Released under the [MIT License](LICENSE).
+
+Connect on [LinkedIn](https://www.linkedin.com/in/sajedul-islam-devops/).
