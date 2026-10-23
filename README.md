@@ -82,6 +82,47 @@ docker run --rm -p 8080:80 webapp-demo
 cd terraform && terraform destroy
 ```
 
+## For students
+
+This repo is a teaching demo. Fork it and run the whole pipeline on your own accounts.
+
+### What you need
+
+- **AWS account** with the AWS CLI installed and a configured profile (`aws configure --profile devops`)
+- **Docker Hub account** and an access token (Read & Write)
+- **GitHub account** to fork the repo and run Actions
+- **Terraform** ≥ 1.5 and **Docker** installed locally
+- An **EC2 key pair** created in your AWS region (download the `.pem` file)
+
+### Fork-and-run checklist
+
+1. **Fork** this repo on GitHub and clone your fork.
+2. **Use your own Docker Hub username.** Replace `sajedul5` with your username in:
+   - `.github/workflows/cicd.yml` (`IMAGE_NAME`)
+   - `scripts/deploy.sh` (default `IMAGE`)
+   - `terraform/variables.tf` (`docker_image` default)
+3. **Build and push the image once** so the EC2 instance has something to pull on first boot:
+   ```bash
+   docker build -t <your-dockerhub-user>/webapp-demo:latest ./webapp
+   docker push <your-dockerhub-user>/webapp-demo:latest
+   ```
+4. **Set your Terraform variables:**
+   ```bash
+   cp terraform/terraform.tfvars.example terraform/terraform.tfvars
+   # edit aws_profile, aws_region, key_name, docker_image
+   ```
+5. **Provision EC2:** follow [step 1](#1-provision-ec2-with-terraform).
+6. **Add the GitHub secrets** to *your fork*: follow [step 2](#2-add-github-repository-secrets).
+7. **Make a change** in `webapp/index.html`, push to `main`, and watch the Actions tab deploy it.
+8. **Clean up** when you're done so you don't get billed: see [Tear down](#tear-down).
+
+### Things to try next
+
+- Restrict `allowed_cidr` to your own IP instead of `0.0.0.0/0`
+- Add a test or lint job before the build step in the workflow
+- Store Terraform state in an S3 backend
+- Put the app behind an Application Load Balancer with HTTPS
+
 ## License
 
 Copyright © 2026 Md Sajedul Islam. Released under the [MIT License](LICENSE).
